@@ -18,8 +18,7 @@ function useDebounce<T>(value:T, delay:number) {
 export function WeatherApp(){
     const [cityInput, setCityInput] = useState("")
 
-    const  [weatherData, setWeatherData] = useState
-        <{ city: string; temperature: number } | null>(null);
+    const  [weatherData, setWeatherData] = useState<{ city: string; temperature: number } | null>(null);
 
     const [loading, setLoading] = useState(false)
 

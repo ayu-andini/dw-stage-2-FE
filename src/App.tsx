@@ -1,13 +1,16 @@
 import './App.css'
-import { WeatherApp } from './components/WeatherApp';
+// import { WeatherApp } from './components/WeatherApp';
+import { Uncontrolled, Controlled, LifecycleDemo } from './components/Controllers';
 
 function App() {
 
 
   return (
     <>
-    <WeatherApp />
-
+    {/* <WeatherApp /> */}
+    <Uncontrolled />
+    <Controlled />
+    <LifecycleDemo />
     </>
   )
 }

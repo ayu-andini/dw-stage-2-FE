@@ -10,6 +10,11 @@ export async function fetchWeather (city:string):
         })
 }
 
+
+
+
+
+
 // function sederhana tanpa promise
 // function weather (city){
 //     return ({
