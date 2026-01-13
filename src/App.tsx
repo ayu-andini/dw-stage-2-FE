@@ -1,23 +1,56 @@
 import './App.css'
-// import CardItem, { CardProfile } from './components/Card';
 import { TodoItem } from './components/TodoItem';
 import { useState } from 'react'
+// import { Hello, HelloProps  } from './components/Card';
 
-// function App() {
-// }
+
+interface Todo {
+  text: string;
+  completed: boolean;
+}
 
 function App() {
   const [task, setTask] = useState("");
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  // Tambahkan ke array langsung (tanpa validasi atau trim)
   function handleAdd() {
-    const newTodos = todos.concat(task);
-    setTodos(newTodos);
+    if (task.trim() === "") return;
+    const newTodo: Todo = { text: task, completed: false };
+    setTodos([...todos, newTodo]);
     setTask("");
   }
 
+  function handleToggleComplete(index: number) {
+    const newTodos = todos.map((todo, i) =>
+      i === index ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(newTodos);
+  }
+
+let countVar = 0;
+const [count, setCount] = useState(0);
+
+
+
   return (
+    <>
+    {/* <Hello /> */}
+    {/* <HelloProps name="Ayu"/> */}
+    {/* <HelloProps name="Andini"/> */}
+
+    <button onClick={() => { 
+      countVar++; 
+      console.log(countVar);  // Updates in console only!
+    }}>
+      Count: {countVar}
+    </button>
+
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+
+
     <div style={{ padding: "2rem" }}>
       <h2>To-Do List</h2>
 
@@ -28,10 +61,16 @@ function App() {
 
       <ul>
         {todos.map((todo, index) => (
-          <TodoItem key={index} text={todo} />
+          <TodoItem
+            key={index}
+            text={todo.text}
+            completed={todo.completed}
+            onToggleComplete={() => handleToggleComplete(index)}
+          />
         ))}
       </ul>
     </div>
+  </>
   )
 }
 
